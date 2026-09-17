@@ -1,0 +1,1 @@
+window.EURO_2026=window.EURO_CSHAPES_FEATURES.filter(feature=>feature.from<=2026&&feature.to>=2000&&["uk","ireland","france","spain","portugal","netherlands","belgium","denmark","norway","sweden","finland","russia","ukraine","romania","hungary","bulgaria","greece","turkey","switzerland","czechia","poland","italy"].includes(feature.id));
