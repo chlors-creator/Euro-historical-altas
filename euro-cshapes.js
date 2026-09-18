@@ -19,6 +19,8 @@ const EURO_SEED_SOURCE=[
 ];
 const EURO_EARLY_FEATURES=window.EURO_CSHAPES_EARLY_FEATURES||[];
 const EURO_OFFICIAL_SOURCE_FEATURES=window.EURO_CSHAPES_OFFICIAL_FEATURES||[];
+const EURO_ROMANIA_1939_OFFICIAL=EURO_OFFICIAL_SOURCE_FEATURES.find(feature=>feature.id==="romania"&&feature.from===1920&&feature.to===1940);
+const EURO_BULGARIA_1919_OFFICIAL=EURO_OFFICIAL_SOURCE_FEATURES.find(feature=>feature.id==="bulgaria"&&feature.from===1919&&feature.to===1940);
 const splitRussianOfficialFeature=feature=>{
   const windows=[
     [feature.from,Math.min(feature.to,1916),"russia","Russia","Russia"],
@@ -30,6 +32,13 @@ const splitRussianOfficialFeature=feature=>{
 };
 const EURO_OFFICIAL_FEATURES=EURO_OFFICIAL_SOURCE_FEATURES.flatMap(feature=>{
   if(feature.id==="prussia"&&feature.from>=1886)return [];
+  if(feature.id==="yugoslavia"&&feature.from===1992&&feature.to===2006)return [
+    {...feature,to:2002,enddate:"2002-12-31"},
+    {...feature,id:"serbiaMontenegro",name:"Serbia and Montenegro",statename:"Serbia and Montenegro",from:2003,to:2006,startdate:"2003-01-01",enddate:"2006-12-31",source:"ETH Zurich CShapes 2.0 official boundary · Serbia and Montenegro 2003—2006"}
+  ];
+  if((feature.id==="serbia"||feature.id==="montenegro")&&feature.from===2006)return [{...feature,from:2007,startdate:"2007-01-01"}];
+  if(feature.id==="romania"&&feature.from===1940&&feature.to===1940&&EURO_ROMANIA_1939_OFFICIAL)return [{...feature,path:EURO_ROMANIA_1939_OFFICIAL.path,source:"ETH Zurich CShapes 2.0 official boundary · Romania 1940 aligned with 1939"}];
+  if(feature.id==="bulgaria"&&feature.from===1919&&feature.to===1940&&EURO_BULGARIA_1919_OFFICIAL)return [{...feature,from:1919,to:1919,startdate:"1919-01-01",enddate:"1919-12-31",path:EURO_BULGARIA_1919_OFFICIAL.path,source:"ETH Zurich CShapes 2.0 official boundary · Bulgaria 1919"},{...feature}];
   if(/belarus|byelorussia/i.test(`${feature.name} ${feature.statename||""}`))return [{...feature,id:"belarus",name:"Belarus",statename:"Belarus"}];
   if(feature.id==="russia")return splitRussianOfficialFeature(feature);
   if(feature.id==="ottoman"&&feature.from>=1923)return [{...feature,id:"turkey",name:"Turkey",statename:"Turkey"}];

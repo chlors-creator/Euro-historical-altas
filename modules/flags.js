@@ -88,7 +88,7 @@ const HISTORICAL_FLAG_PERIODS={
   poland:[[1816,1918,"Flag of Congress Poland.svg","波兰会议王国旗"],[1918,2026,"Flag of Poland.svg","波兰国旗"]],
   greece:[[1830,1978,"Flag of Greece (1822–1978).svg","希腊王国/共和国旗"],[1978,2026,"Flag of Greece.svg","希腊国旗"]],
   czechoslovakia:[[1918,1992,"Flag of Czechoslovakia.svg","捷克斯洛伐克国旗"]],
-  yugoslavia:[[1918,1945,"Flag of the Kingdom of Yugoslavia.svg","南斯拉夫王国旗"],[1945,1991,"Flag of Yugoslavia (1945–1992).svg","南斯拉夫社会主义联邦共和国旗"]],
+  yugoslavia:[[1918,1945,"Flag of the Kingdom of Yugoslavia.svg","南斯拉夫王国旗"],[1945,1991,"Flag of Yugoslavia (1945–1992).svg","南斯拉夫社会主义联邦共和国旗"]],serbiaMontenegro:[[2003,2006,"Flag of Serbia and Montenegro.svg","塞尔维亚和黑山国旗"]],
   eastGermany:[[1949,1990,"Flag of East Germany.svg","德意志民主共和国国旗"]],
   westGermany:[[1949,1990,"Flag of Germany.svg","德意志联邦共和国国旗"]],
   danzig:[[1919,1939,"Flag of the Free City of Danzig.svg","但泽自由市旗"]]
