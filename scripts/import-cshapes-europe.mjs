@@ -23,17 +23,17 @@ const canonicalId=name=>{
   const aliases=[
     ["united kingdom","uk"],["great britain","uk"],["england","uk"],["ireland","ireland"],
     ["france","france"],["spain","spain"],["portugal","portugal"],["netherlands","netherlands"],
-    ["belgium","belgium"],["german federal republic","westGermany"],["german democratic republic","eastGermany"],["germany","germany"],["prussia","prussia"],["austria-hungary","austriaHungary"],
+    ["belgium","belgium"],["german federal republic","westGermany"],["german democratic republic","eastGermany"],["germany (prussia)","prussia"],["germany","germany"],["prussia","prussia"],["austria-hungary","austriaHungary"],
     ["austria","austria"],["italy","italy"],["piedmont","piedmont"],["switzerland","switzerland"],
     ["czechoslovakia","czechoslovakia"],["czech republic","czechia"],["bohemia","czechia"],
     ["poland","poland"],["denmark","denmark"],["norway","norway"],["sweden","sweden"],
     ["finland","finland"],["russia","russia"],["soviet union","sovietUnion"],["ukraine","ukraine"],
     ["romania","romania"],["rumania","romania"],["hungary","hungary"],["yugoslavia","yugoslavia"],["bulgaria","bulgaria"],
-    ["greece","greece"],["ottoman","ottoman"],["turkey","turkey"]
+    ["greece","greece"],["ottoman","ottoman"],["turkey","turkey"],["armenia","armenia"],["azerbaijan","azerbaijan"],["georgia","georgia"]
   ];
   return aliases.find(([alias])=>key.includes(alias))?.[1]||slug(name);
 };
-  const EUROPEAN_IDS=new Set(["uk","ireland","netherlands","belgium","luxembourg","france","switzerland","spain","portugal","germany","westGermany","eastGermany","poland","danzig","austriaHungary","austria","hungary","czechoslovakia","czechia","slovakia","italy","malta","albania","serbia","montenegro","macedonia-fyrom-north-macedonia","croatia","yugoslavia","bosnia-herzegovina","bosnia","herzegovina","kosovo","slovenia","greece","cyprus","bulgaria","moldova","romania","russia","belarus","estonia","latvia","lithuania","ukraine","finland","sweden","norway","denmark","iceland","ottoman","turkey"]);
+const EUROPEAN_IDS=new Set(["uk","ireland","netherlands","belgium","luxembourg","france","switzerland","spain","portugal","germany","prussia","westGermany","eastGermany","poland","danzig","austriaHungary","austria","hungary","czechoslovakia","czechia","slovakia","italy","malta","albania","serbia","montenegro","macedonia-fyrom-north-macedonia","croatia","yugoslavia","bosnia-herzegovina","bosnia","herzegovina","kosovo","slovenia","greece","cyprus","bulgaria","moldova","romania","russia","belarus","estonia","latvia","lithuania","ukraine","finland","sweden","norway","denmark","iceland","ottoman","turkey","armenia","azerbaijan","georgia"]);
 const project=([lon,lat])=>{
   const x=(numberOf(lon)-EUROPE.minLon)/(EUROPE.maxLon-EUROPE.minLon)*EUROPE.width;
   const y=(EUROPE.maxLat-numberOf(lat))/(EUROPE.maxLat-EUROPE.minLat)*EUROPE.height;

@@ -5,7 +5,7 @@ import {spawnSync} from "node:child_process";
 
 const root=process.cwd();
 const mirrorFiles=[
-  "app.js","formal-names.js","euro-meta-zh.js","index.html","styles.css","euro-cshapes-europe-1816-1885.js","euro-cshapes-official.js","euro-cshapes.js",
+  "app.js","formal-names.js","euro-meta-zh.js","index.html","styles.css","euro-cshapes-europe-1816-1885.js","euro-cshapes-official.js","euro-cshapes-modern-2020-2026.js","euro-cshapes.js","data/euro-modern-2020-2026.geojson",
   "euro-historical-1816-1885.js","euro-historical-1886-1999.js","euro-2026.js",
   "PROJECT_CONTEXT.md","README.md",
   "modules/boundary-debug.js","modules/core.js","modules/events.js",

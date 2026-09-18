@@ -17,7 +17,7 @@ window.EURO_META={
   bulgaria:["\u4fdd\u52a0\u5229\u4e9a",["\u7d22\u975e\u4e9a","\u666e\u7f57\u592b\u8fea\u592b"]],greece:["\u5e0c\u814a",["\u96c5\u5178","\u585e\u8428\u6d1b\u5c3c\u57fa"]],
   ottoman:["\u5965\u65af\u66fc\u5e1d\u56fd",["\u4f0a\u65af\u5766\u5e03\u5c14","\u8428\u6d1b\u5c3c\u5361"]],turkey:["\u571f\u8033\u5176",["\u5b89\u5361\u62c9","\u4f0a\u65af\u5766\u5e03\u5c14"]],
   russia:["\u4fc4\u7f57\u65af",["\u83ab\u65af\u79d1","\u5723\u5f7c\u5f97\u5821"]],ukraine:["\u4e4c\u514b\u5170",["\u57fa\u8f85","\u5229\u6c83\u592b"]],
-  belarus:["\u767d\u4fc4\u7f57\u65af",["\u660e\u65af\u514b"]],moldova:["\u6469\u5c14\u591a\u74e6",["\u57fa\u5e0c\u8bb7\u5965"]],
+  belarus:["\u767d\u4fc4\u7f57\u65af",["\u660e\u65af\u514b"]],armenia:["\u4e9a\u7f8e\u5c3c\u4e9a",["\u57c3\u91cc\u6e29"]],azerbaijan:["\u963f\u585e\u62dc\u7586",["\u5df4\u5e93"]],georgia:["\u683c\u9c81\u5409\u4e9a",["\u7b2c\u6bd4\u5229\u65af"]],moldova:["\u6469\u5c14\u591a\u74e6",["\u57fa\u5e0c\u8bb7\u5965"]],
   finland:["\u82ac\u5170",["\u8d6b\u5c14\u8f9b\u57fa","\u56fe\u5c14\u5e93"]],sweden:["\u745e\u5178",["\u65af\u5fb7\u54e5\u5c14\u6469","\u54e5\u5fb7\u5821"]],
   norway:["\u632a\u5a01",["\u5965\u65af\u9646","\u5351\u5c14\u6839"]],denmark:["\u4e39\u9ea6",["\u54e5\u672c\u54c8\u6839","\u5965\u5c14\u80e1\u65af"]],
   iceland:["\u51b0\u5c9b",["\u96f7\u514b\u96c5\u672a\u514b"]],switzerland:["\u745e\u58eb",["\u4f2f\u5c14\u5c3c","\u82cf\u9ece\u4e16"]],
@@ -30,7 +30,7 @@ window.EURO_META={
   yugoslavia:["\u5357\u65af\u62c9\u592b",["\u8d1d\u5c14\u683c\u83b1\u5fb7"]],cyprus:["\u585e\u6d66\u8def\u65af",["\u5c3c\u79d1\u897f\u4e9a"]],
   malta:["\u9a6c\u8033\u4ed6",["\u74e6\u83b1\u5854"]],albania:["\u963f\u5c14\u5df4\u5c3c\u4e9a",["\u5730\u62c9\u90a3","\u90fd\u62c9\u65af"]],
   sanMarino:["\u5723\u9a6c\u529b\u8bfa",["\u5723\u9a6c\u529b\u8bfa"]],andorra:["\u5b89\u9053\u5c14",["\u5b89\u9053\u5c14\u57ce"]],
-  danzig:["\u4f46\u6cfd\u81ea\u7531\u5e02",["\u4f46\u6cfd"]],germanConfederation:["\u5fb7\u610f\u5fd7\u90a6\u8054",["\u6cd5\u5170\u514b\u798f\u7279"]],
+  danzig:["\u4f46\u6cfd\u81ea\u7531\u5e02",["\u4f46\u6cfd"]],eastGalicia:["\u4e1c\u52a0\u91cc\u897f\u4e9a",["\u5229\u6c83\u592b","\u6cf0\u5c14\u8bfa\u6ce2\u5c14"]],germanConfederation:["\u5fb7\u610f\u5fd7\u90a6\u8054",["\u6cd5\u5170\u514b\u798f\u7279"]],
   prussia:["\u666e\u9c81\u58eb\u738b\u56fd",["\u67cf\u6797","\u67ef\u5c3c\u65af\u5821"]],germanEmpire:["\u5fb7\u610f\u5fd7\u5e1d\u56fd",["\u67cf\u6797"]],
   papal:["\u6559\u7687\u56fd",["\u7f57\u9a6c"]],piedmont:["\u6492\u4e01\u738b\u56fd",["\u90fd\u7075","\u70ed\u90a3\u4e9a"]],twoSicilies:["\u4e24\u897f\u897f\u91cc\u738b\u56fd",["\u90a3\u4e0d\u52d2\u65af","\u5df4\u52d2\u83ab"]],
   "austriaEmpire":["\u5965\u5730\u5229\u5e1d\u56fd",["\u7ef4\u4e5f\u7eb3"]],sovietUnion:["\u82cf\u8054",["\u83ab\u65af\u79d1","\u5217\u5b81\u683c\u52d2"]],
@@ -44,4 +44,32 @@ window.EURO_META={
   ,modena:["\u6469\u5fb7\u7eb3",[]],naples:["\u90a3\u4e0d\u52d2\u65af\u738b\u56fd",[]],oldenburg:["\u5965\u5c14\u767b\u5821",[]],parma:["\u5e15\u5c14\u9a6c",[]],reuss:["\u7f57\u4f0a\u65af",[]],sanMarino:["\u5723\u9a6c\u529b\u8bfa",[]]
   ,saxeAltenburg:["\u8428\u514b\u68ee-\u963f\u5c14\u6ede\u5821",[]],saxeCoburgGotha:["\u8428\u514b\u68ee-\u79d1\u5821-\u54e5\u8fbe",[]],saxeCoburgSaalfeld:["\u8428\u514b\u68ee-\u79d1\u5821-\u8428\u5c14\u8d39\u5c14\u5fb7",[]],saxeGothaAltenberg:["\u8428\u514b\u68ee-\u54e5\u8fbe-\u963f\u5c14\u6ede\u5821",[]]
   ,saxeHildburghausen:["\u8428\u514b\u68ee-\u5e0c\u5c14\u5fb7\u5e03\u683c\u8c6a\u68c0",[]],saxeMeiningen:["\u8428\u514b\u68ee-\u8fc8\u5b81\u6839",[]],saxeWeimar:["\u8428\u514b\u68ee-\u9b4f\u739b",[]],saxony:["\u8428\u514b\u68ee\u738b\u56fd",[]],schaumburgLippe:["\u7ecd\u59c6\u5821-\u5229\u73c0",[]],wurttemberg:["\u7b26\u817e\u5821",[]]
+};
+
+/* Capitals are separate from the general metadata because several states
+   changed their political centre during the atlas period. */
+window.EURO_CAPITALS_ZH={
+  uk:[[1816,2026,"伦敦"]],ireland:[[1816,2026,"都柏林"]],france:[[1816,2026,"巴黎"]],spain:[[1816,2026,"马德里"]],portugal:[[1816,2026,"里斯本"]],
+  netherlands:[[1816,2026,"阿姆斯特丹"]],belgium:[[1830,2026,"布鲁塞尔"]],luxembourg:[[1816,2026,"卢森堡"]],germany:[[1871,2026,"柏林"]],
+  westGermany:[[1949,1990,"波恩"]],eastGermany:[[1949,1990,"东柏林"]],italy:[[1861,1865,"都灵"],[1865,2026,"罗马"]],
+  austria:[[1816,2026,"维也纳"]],austriaEmpire:[[1816,1866,"维也纳"]],austriaHungary:[[1867,1918,"维也纳／布达佩斯"]],hungary:[[1867,2026,"布达佩斯"]],
+  czechoslovakia:[[1918,1992,"布拉格"]],czechia:[[1993,2026,"布拉格"]],slovakia:[[1993,2026,"布拉迪斯拉发"]],poland:[[1816,2026,"华沙"]],
+  romania:[[1816,2026,"布加勒斯特"]],bulgaria:[[1879,2026,"索非亚"]],greece:[[1830,2026,"雅典"]],
+  ottoman:[[1816,1922,"君士坦丁堡（今伊斯坦布尔）"]],turkey:[[1923,2026,"安卡拉"]],russia:[[1816,1918,"圣彼得堡"],[1918,2026,"莫斯科"]],
+  ukraine:[[1918,2026,"基辅"]],belarus:[[1991,2026,"明斯克"]],armenia:[[1991,2026,"埃里温"]],azerbaijan:[[1991,2026,"巴库"]],georgia:[[1991,2026,"第比利斯"]],eastGalicia:[[1919,1923,"利沃夫"]],moldova:[[1991,2026,"基希讷乌"]],finland:[[1816,2026,"赫尔辛基"]],
+  sweden:[[1816,2026,"斯德哥尔摩"]],norway:[[1816,1924,"克里斯蒂安尼亚"],[1925,2026,"奥斯陆"]],denmark:[[1816,2026,"哥本哈根"]],iceland:[[1918,2026,"雷克雅未克"]],
+  switzerland:[[1816,2026,"伯尔尼"]],estonia:[[1918,2026,"塔林"]],latvia:[[1918,2026,"里加"]],lithuania:[[1816,1918,"维尔纽斯"],[1919,1939,"考纳斯"],[1940,2026,"维尔纽斯"]],
+  serbia:[[1816,2026,"贝尔格莱德"]],montenegro:[[1816,1945,"采蒂涅"],[1946,1991,"波德戈里察（铁托格勒）"],[1992,2026,"波德戈里察"]],
+  "macedonia-fyrom-north-macedonia":[[1991,2026,"斯科普里"]],croatia:[[1918,2026,"萨格勒布"]],bosniaHerzegovina:[[1918,2026,"萨拉热窝"]],bosnia:[[1816,2026,"萨拉热窝"]],
+  kosovo:[[2008,2026,"普里什蒂纳"]],slovenia:[[1918,2026,"卢布尔雅那"]],yugoslavia:[[1918,1991,"贝尔格莱德"]],cyprus:[[1960,2026,"尼科西亚"]],malta:[[1816,2026,"瓦莱塔"]],
+  albania:[[1912,2026,"地拉那"]],sanMarino:[[1816,2026,"圣马力诺"]],andorra:[[1816,2026,"安道尔城"]],danzig:[[1920,1939,"但泽"]],
+  germanConfederation:[[1816,1866,"法兰克福"],],prussia:[[1816,1871,"柏林"]],germanEmpire:[[1871,1918,"柏林"]],papal:[[1816,1870,"罗马"]],
+  piedmont:[[1816,1861,"都灵"]],twoSicilies:[[1816,1861,"那不勒斯"]],sovietUnion:[[1922,1991,"莫斯科"]],sovietRussia:[[1918,1922,"莫斯科"]],balkans:[[1816,2026,"—"]],
+  anhalt:[[1816,1918,"德绍"]],anhaltBernberg:[[1816,1863,"贝恩堡"]],anhaltDessau:[[1816,1863,"德绍"]],baden:[[1816,1918,"卡尔斯鲁厄"]],bavaria:[[1816,1918,"慕尼黑"]],
+  cracow:[[1815,1846,"克拉科夫"]],frankfurt:[[1816,1866,"法兰克福"]],hanover:[[1816,1866,"汉诺威"]],hesseDarmstadt:[[1816,1918,"达姆施塔特"]],hesseHomburg:[[1816,1866,"洪堡"]],hesseKassel:[[1816,1866,"卡塞尔"]],
+  hohengeroldseck:[[1816,1818,"霍亨格罗尔德塞克"]],hohenzollernHechingen:[[1816,1850,"黑钦根"]],hohenzollernSigmaringen:[[1816,1850,"锡格马林根"]],liechtenstein:[[1816,2026,"瓦杜兹"]],
+  lucca:[[1817,1847,"卢卡"]],massa:[[1815,1829,"马萨"]],mecklenburgSchwerin:[[1816,1918,"什未林"]],mecklenburgStrelitz:[[1816,1918,"新施特雷利茨"]],modena:[[1815,1859,"摩德纳"]],naples:[[1816,1861,"那不勒斯"]],
+  oldenburg:[[1815,1918,"奥尔登堡"]],parma:[[1815,1859,"帕尔马"]],reuss:[[1816,1918,"格赖茨／格拉"]],sanMarino:[[1816,2026,"圣马力诺"]],saxeAltenburg:[[1826,1918,"阿尔滕堡"]],
+  saxeCoburgGotha:[[1826,1918,"哥达／科堡"]],saxeCoburgSaalfeld:[[1816,1826,"科堡"]],saxeGothaAltenberg:[[1816,1826,"哥达"]],saxeHildburghausen:[[1816,1826,"希尔德布尔格豪森"]],
+  saxeMeiningen:[[1816,1918,"迈宁根"]],saxeWeimar:[[1816,1918,"魏玛"]],saxony:[[1816,1918,"德累斯顿"]],schaumburgLippe:[[1816,1918,"比克堡"]],wurttemberg:[[1816,1918,"斯图加特"]]
 };

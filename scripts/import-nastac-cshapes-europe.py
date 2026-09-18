@@ -199,13 +199,13 @@ def decode_features(path):
 NAME_TO_ID = {
     'Albania': 'albania', 'Andorra': 'andorra', 'Anhalt': 'anhalt',
     'Anhalt-Bernberg': 'anhaltBernberg', 'Anhalt-Dessau': 'anhaltDessau',
-    'Austria': 'austria', 'Austria-Hungary': 'austriaHungary',
-    'Baden': 'baden', 'Bavaria': 'bavaria', 'Belgium': 'belgium',
+    'Armenia': 'armenia', 'Austria': 'austria', 'Austria-Hungary': 'austriaHungary', 'Azerbaijan': 'azerbaijan', 'Georgia': 'georgia', 'Germany (Prussia)': 'prussia',
+    'Baden': 'baden', 'Bavaria': 'bavaria', 'Belarus (Byelorussia)': 'belarus', 'Belgium': 'belgium',
     'Bosnia': 'bosnia', 'Bosnia-Herzegovina': 'bosniaHerzegovina',
     'Bulgaria': 'bulgaria', 'Cracow': 'cracow', 'Croatia': 'croatia',
     'Czech Republic': 'czechia', 'Czechoslovakia': 'czechoslovakia',
     'Denmark': 'denmark', 'Estonia': 'estonia', 'Finland': 'finland',
-    'France': 'france', 'Frankfurt': 'frankfurt', 'Georgia': 'georgia',
+    'France': 'france', 'Frankfurt': 'frankfurt',
     'German Democratic Republic': 'eastGermany', 'German Federal Republic': 'westGermany',
     'Greece': 'greece', 'Hanover': 'hanover', 'Hesse-Darmstadt (Ducal': 'hesseDarmstadt',
     'Hesse-Homburg': 'hesseHomburg', 'Hesse-Kassel (Electoral)': 'hesseKassel',
@@ -244,7 +244,8 @@ DISPLAY_NAMES = {
     'saxeCoburgSaalfeld': '\u8428\u514b\u68ee-\u79d1\u5821-\u8428\u5c14\u8d39\u5c14\u5fb7', 'saxeGothaAltenberg': '\u8428\u514b\u68ee-\u54e5\u8fbe-\u963f\u5c14\u6ede\u5821',
     'saxeHildburghausen': '\u8428\u514b\u68ee-\u5e0c\u5c14\u5fb7\u5e03\u683c\u8c6a\u68c0', 'saxeMeiningen': '\u8428\u514b\u68ee-\u8fc8\u5b81\u6839',
     'saxeWeimar': '\u8428\u514b\u68ee-\u9b4f\u739b', 'saxony': '\u8428\u514b\u68ee\u738b\u56fd', 'schaumburgLippe': '\u7ecd\u59c6\u5821-\u5229\u73c0',
-    'wurttemberg': '\u7b26\u817e\u5821',
+    'armenia': '\u4e9a\u7f8e\u5c3c\u4e9a\u5171\u548c\u56fd', 'azerbaijan': '\u963f\u585e\u62dc\u7586\u5171\u548c\u56fd', 'georgia': '\u683c\u9c81\u5409\u4e9a',
+    'wurttemberg': '\u7b26\u817e\u5821', 'belarus': '\u767d\u4fc4\u7f57\u65af\u5171\u548c\u56fd',
 }
 
 
@@ -271,6 +272,8 @@ def early_features(features):
         if source_name.startswith('W') and 'rttemberg' in source_name:
             source_name = 'Württemberg'
         feature_id = NAME_TO_ID.get(source_name)
+        if source_name == 'Germany':
+            feature_id = 'germanEmpire' if int(props.get('From', 1816)) >= 1871 else 'germanConfederation'
         if not feature_id:
             continue
         from_year = max(1816, int(props.get('From', 1816)))
@@ -294,9 +297,70 @@ def early_features(features):
     return result
 
 
+def modern_features(features):
+    """Normalize the GeoJSON records valid in 2020 into the modern layer."""
+    result = []
+    for feature in features:
+        props = feature['properties']
+        source_name = props.get('Name') or props.get('cntry_name') or ''
+        feature_id = NAME_TO_ID.get(source_name)
+        if not feature_id:
+            continue
+        from_year = int(props.get('From') or props.get('gwsyear') or 1816)
+        to_year = int(props.get('To') or props.get('gweyear') or 2026)
+        if not (from_year <= 2020 <= to_year):
+            continue
+        result.append({
+            'id': feature_id,
+            'name': DISPLAY_NAMES.get(feature_id, source_name),
+            'statename': DISPLAY_NAMES.get(feature_id, source_name),
+            'from': 2020,
+            'to': 2026,
+            'startdate': '2020-01-01',
+            'enddate': '2026-12-31',
+            'capital': props.get('Capital') or props.get('capname') or '',
+            'status': 1 if props.get('Status', 1) == 'independent' else int(props.get('status') or 1),
+            'gwcode': str(props.get('id') or props.get('gwcode') or ''),
+            'source': 'CShapes-Europe GeoJSON import · 2020—2026 reference',
+            'path': feature_path(feature),
+        })
+    return result
+
+
+def belarus_features(features):
+    """Keep the NASTAC modern Belarus record as a small checked-in supplement.
+
+    The official CShapes 2.0 archive used for 1886--2019 does not expose a
+    Belarus record, while the NASTAC CShapes-Europe tile does.  We import only
+    Belarus here so that the three Caucasus republics are not accidentally
+    reintroduced into the atlas's intentionally excluded post-1992 view.
+    """
+    result = []
+    for feature in features:
+        props = feature['properties']
+        if props.get('Name') != 'Belarus (Byelorussia)':
+            continue
+        result.append({
+            'id': 'belarus',
+            'name': '\u767d\u4fc4\u7f57\u65af\u5171\u548c\u56fd',
+            'statename': '\u767d\u4fc4\u7f57\u65af\u5171\u548c\u56fd',
+            'from': 1991,
+            'to': 2026,
+            'startdate': '1991-01-01',
+            'enddate': '2026-12-31',
+            'capital': '\u660e\u65af\u514b',
+            'status': 1,
+            'gwcode': str(props.get('id') or ''),
+            'source': 'CShapes-Europe · NASTAC modern reference import',
+            'path': feature_path(feature),
+        })
+    return result
+
+
 if __name__ == '__main__':
     layer, features = decode_features('.nastac-tile-0.pbf')
     early = early_features(features)
+    modern = modern_features(features)
     Path('euro-cshapes-europe-1816-1885.js').write_text(
         'window.EURO_CSHAPES_EARLY_FEATURES=' + json.dumps(early, ensure_ascii=True, separators=(',', ':')) + ';\n',
         encoding='utf-8',
@@ -305,4 +369,8 @@ if __name__ == '__main__':
         json.dumps({'type': 'FeatureCollection', 'features': features}, ensure_ascii=False),
         encoding='utf-8',
     )
-    print('layer', layer, 'decoded', len(features), 'early imported', len(early), 'output-bytes', Path('euro-cshapes-europe-1816-1885.js').stat().st_size)
+    Path('euro-cshapes-modern-1991-2026.js').write_text(
+        'window.EURO_CSHAPES_MODERN_FEATURES=' + json.dumps(modern, ensure_ascii=True, separators=(',', ':')) + ';\n',
+        encoding='utf-8',
+    )
+    print('layer', layer, 'decoded', len(features), 'early imported', len(early), 'modern supplements', len(modern), 'output-bytes', Path('euro-cshapes-europe-1816-1885.js').stat().st_size)
