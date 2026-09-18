@@ -19,16 +19,34 @@ const EURO_SEED_SOURCE=[
 ];
 const EURO_EARLY_FEATURES=window.EURO_CSHAPES_EARLY_FEATURES||[];
 const EURO_OFFICIAL_SOURCE_FEATURES=window.EURO_CSHAPES_OFFICIAL_FEATURES||[];
-const EURO_OFFICIAL_FEATURES=EURO_OFFICIAL_SOURCE_FEATURES.map(feature=>{if(/belarus|byelorussia/i.test(`${feature.name} ${feature.statename}`))return {...feature,id:"belarus",name:"Belarus",statename:"Belarus"};return feature.id==="ottoman"&&feature.from>=1923?{...feature,id:"turkey",name:"Turkey",statename:"Turkey"}:feature});
+const splitRussianOfficialFeature=feature=>{
+  const windows=[
+    [feature.from,Math.min(feature.to,1916),"russia","Russia","Russia"],
+    [Math.max(feature.from,1917),Math.min(feature.to,1921),"sovietRussia","Russian SFSR","Russian SFSR"],
+    [Math.max(feature.from,1922),Math.min(feature.to,1991),"sovietUnion","Soviet Union","Soviet Union"],
+    [Math.max(feature.from,1992),feature.to,"russia","Russia","Russia"]
+  ];
+  return windows.filter(([from,to])=>from<=to).map(([from,to,id,name,statename])=>({...feature,id,name,statename,from,to,startdate:`${from}-01-01`,enddate:`${to}-12-31`}));
+};
+const EURO_OFFICIAL_FEATURES=EURO_OFFICIAL_SOURCE_FEATURES.flatMap(feature=>{
+  if(feature.id==="prussia"&&feature.from>=1886)return [];
+  if(/belarus|byelorussia/i.test(`${feature.name} ${feature.statename||""}`))return [{...feature,id:"belarus",name:"Belarus",statename:"Belarus"}];
+  if(feature.id==="russia")return splitRussianOfficialFeature(feature);
+  if(feature.id==="ottoman"&&feature.from>=1923)return [{...feature,id:"turkey",name:"Turkey",statename:"Turkey"}];
+  if(feature.id==="austria"&&feature.from===1919)return [{...feature,id:"austria",name:"Austria",statename:"Austria",source:"ETH Zurich CShapes 2.0 official boundary · Austria 1919"}];
+  return [feature];
+});
+const EURO_GERMAN_OFFICIAL_FEATURES=EURO_OFFICIAL_SOURCE_FEATURES.filter(feature=>feature.id==="prussia"&&feature.from>=1886).map(feature=>{
+  const isImperial=feature.from<1919;
+  return {...feature,id:isImperial?"germanEmpire":"germany",name:"Germany",statename:"Germany",from:feature.from,to:isImperial?1918:Math.min(feature.to,1944),enddate:`${isImperial?1918:Math.min(feature.to,1944)}-12-31`,source:`ETH Zurich CShapes 2.0 official boundary · ${isImperial?"German Empire 1886—1918":"Germany 1919—1944"}`};
+}).filter(feature=>feature.from<=feature.to);
 const EURO_MODERN_IDS=new Set(["albania","armenia","austria","azerbaijan","belarus","belgium","bosnia-herzegovina","bulgaria","croatia","czechia","cyprus","denmark","estonia","finland","france","georgia","greece","hungary","iceland","ireland","italy","kosovo","latvia","lithuania","luxembourg","macedonia-fyrom-north-macedonia","malta","moldova","montenegro","netherlands","norway","poland","portugal","romania","russia","serbia","slovakia","slovenia","spain","sweden","switzerland","turkey","uk","ukraine","westGermany"]);
 const EURO_MODERN_FEATURES=[...EURO_MODERN_IDS].map(id=>{const latest=EURO_OFFICIAL_FEATURES.filter(feature=>feature.id===id&&feature.to===2019).sort((a,b)=>b.from-a.from)[0];return latest?{...latest,from:2020,to:2026,startdate:"2020-01-01",enddate:"2026-12-31",source:"ETH Zurich CShapes 2.0 official boundary · 2020—2026 reference"}:null}).filter(Boolean);
 const EURO_POSTCOLDWAR_FEATURES=[];
 const EURO_SEED_FEATURES=[];
 const EURO_EARLY_VISIBLE=EURO_EARLY_FEATURES.filter(feature=>feature.id!=="germanConfederation");
-const EURO_PRUSSIA_PRE1886=(()=>{const official=EURO_OFFICIAL_FEATURES.find(feature=>feature.id==="prussia"&&feature.from===1886);return official?[{...official,id:"prussia",name:"普鲁士王国",statename:"普鲁士王国",from:1816,to:1885,startdate:"1816-01-01",enddate:"1885-12-31",source:"CShapes 2.0 official Prussia outline · pre-1886 compatibility"}]:[]})();
-const EURO_GERMAN_EMPIRE_POST1885=(()=>{const early=EURO_EARLY_FEATURES.find(feature=>feature.id==="germanEmpire"&&feature.from===1871);return early?[{...early,from:1886,to:1918,startdate:"1886-01-01",enddate:"1918-12-31",source:"CShapes-Europe · NASTAC German Empire continuity 1886—1918"}]:[]})();
+const EURO_PRUSSIA_PRE1886=(()=>{const official=EURO_OFFICIAL_SOURCE_FEATURES.find(feature=>feature.id==="prussia"&&feature.from===1886);return official?[{...official,id:"prussia",name:"普鲁士王国",statename:"普鲁士王国",from:1816,to:1885,startdate:"1816-01-01",enddate:"1885-12-31",source:"CShapes 2.0 official Prussia outline · pre-1886 compatibility"}]:[]})();
 const EURO_HISTORICAL_FEATURES=[
-  ...EURO_GERMAN_EMPIRE_POST1885,
-  {...feature("eastGalicia","东加里西亚",1919,1923,"利沃夫",0,""),source:"历史地区兼容轮廓 · 东加里西亚 1919—1923"}
+  ...EURO_GERMAN_OFFICIAL_FEATURES
 ];
-window.EURO_CSHAPES_FEATURES=[...EURO_PRUSSIA_PRE1886,...EURO_EARLY_VISIBLE,...EURO_OFFICIAL_FEATURES,...EURO_POSTCOLDWAR_FEATURES,...EURO_MODERN_FEATURES,...EURO_SEED_FEATURES,...EURO_HISTORICAL_FEATURES].filter(feature=>feature.id!=="germanConfederation");
+window.EURO_CSHAPES_FEATURES=[...EURO_PRUSSIA_PRE1886,...EURO_EARLY_VISIBLE,...EURO_OFFICIAL_FEATURES,...EURO_POSTCOLDWAR_FEATURES,...EURO_MODERN_FEATURES,...EURO_SEED_FEATURES,...EURO_HISTORICAL_FEATURES].filter(feature=>feature.id!=="germanConfederation"&&feature.id!=="eastGalicia");

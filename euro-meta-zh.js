@@ -33,7 +33,7 @@ window.EURO_META={
   danzig:["\u4f46\u6cfd\u81ea\u7531\u5e02",["\u4f46\u6cfd"]],eastGalicia:["\u4e1c\u52a0\u91cc\u897f\u4e9a",["\u5229\u6c83\u592b","\u6cf0\u5c14\u8bfa\u6ce2\u5c14"]],germanConfederation:["\u5fb7\u610f\u5fd7\u90a6\u8054",["\u6cd5\u5170\u514b\u798f\u7279"]],
   prussia:["\u666e\u9c81\u58eb\u738b\u56fd",["\u67cf\u6797","\u67ef\u5c3c\u65af\u5821"]],germanEmpire:["\u5fb7\u610f\u5fd7\u5e1d\u56fd",["\u67cf\u6797"]],
   papal:["\u6559\u7687\u56fd",["\u7f57\u9a6c"]],piedmont:["\u6492\u4e01\u738b\u56fd",["\u90fd\u7075","\u70ed\u90a3\u4e9a"]],twoSicilies:["\u4e24\u897f\u897f\u91cc\u738b\u56fd",["\u90a3\u4e0d\u52d2\u65af","\u5df4\u52d2\u83ab"]],
-  "austriaEmpire":["\u5965\u5730\u5229\u5e1d\u56fd",["\u7ef4\u4e5f\u7eb3"]],sovietUnion:["\u82cf\u8054",["\u83ab\u65af\u79d1","\u5217\u5b81\u683c\u52d2"]],
+  "austriaEmpire":["\u5965\u5730\u5229\u5e1d\u56fd",["\u7ef4\u4e5f\u7eb3"]],sovietUnion:["\u82cf\u7ef4\u57c3\u793e\u4f1a\u4e3b\u4e49\u5171\u548c\u56fd\u8054\u76df",["\u83ab\u65af\u79d1","\u5217\u5b81\u683c\u52d2"]],
   sovietRussia:["\u82cf\u4fc4",["\u83ab\u65af\u79d1"]],balkans:["\u5df4\u5c14\u5e72\u5386\u53f2\u533a\u57df",["\u8d1d\u5c14\u683c\u83b1\u5fb7","\u7d22\u975e\u4e9a"]]
   ,"bosnia-herzegovina":["\u6ce2\u65af\u5c3c\u4e9a\u548c\u9ed1\u585e\u54e5\u7ef4\u90a3",["\u8428\u62c9\u70ed\u7a9d"]]
   ,anhalt:["\u5b89\u54c8\u5c14\u7279",[]],anhaltBernberg:["\u5b89\u54c8\u5c14\u7279-\u8d1d\u6069\u5821",[]],anhaltDessau:["\u5b89\u54c8\u5c14\u7279-\u5fb7\u7ecd",[]]
@@ -55,7 +55,7 @@ window.EURO_CAPITALS_ZH={
   austria:[[1816,2026,"维也纳"]],austriaEmpire:[[1816,1866,"维也纳"]],austriaHungary:[[1867,1918,"维也纳／布达佩斯"]],hungary:[[1867,2026,"布达佩斯"]],
   czechoslovakia:[[1918,1992,"布拉格"]],czechia:[[1993,2026,"布拉格"]],slovakia:[[1993,2026,"布拉迪斯拉发"]],poland:[[1816,2026,"华沙"]],
   romania:[[1816,2026,"布加勒斯特"]],bulgaria:[[1879,2026,"索非亚"]],greece:[[1830,2026,"雅典"]],
-  ottoman:[[1816,1922,"君士坦丁堡（今伊斯坦布尔）"]],turkey:[[1923,2026,"安卡拉"]],russia:[[1816,1918,"圣彼得堡"],[1918,2026,"莫斯科"]],
+  ottoman:[[1816,1922,"君士坦丁堡（今伊斯坦布尔）"]],turkey:[[1923,2026,"安卡拉"]],russia:[[1816,1917,"圣彼得堡"],[1992,2026,"莫斯科"]],sovietRussia:[[1917,1922,"莫斯科"]],sovietUnion:[[1922,1991,"莫斯科"]],
   ukraine:[[1918,2026,"基辅"]],belarus:[[1991,2026,"明斯克"]],armenia:[[1991,2026,"埃里温"]],azerbaijan:[[1991,2026,"巴库"]],georgia:[[1991,2026,"第比利斯"]],eastGalicia:[[1919,1923,"利沃夫"]],moldova:[[1991,2026,"基希讷乌"]],finland:[[1816,2026,"赫尔辛基"]],
   sweden:[[1816,2026,"斯德哥尔摩"]],norway:[[1816,1924,"克里斯蒂安尼亚"],[1925,2026,"奥斯陆"]],denmark:[[1816,2026,"哥本哈根"]],iceland:[[1918,2026,"雷克雅未克"]],
   switzerland:[[1816,2026,"伯尔尼"]],estonia:[[1918,2026,"塔林"]],latvia:[[1918,2026,"里加"]],lithuania:[[1816,1918,"维尔纽斯"],[1919,1939,"考纳斯"],[1940,2026,"维尔纽斯"]],
