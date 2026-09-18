@@ -93,7 +93,7 @@ dialog{width:min(530px,calc(100% - 2rem));padding:2.4rem;border:1px solid var(--
 /* Hover reveals the historical flag in place; neither the flag nor its country
    path rises vertically when the pointer enters the map. */
 .country-flag-motion{animation:countryFlagReveal .42s ease-out both}
-@keyframes countryFlagReveal{0%{opacity:0;transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+@keyframes countryFlagReveal{0%{opacity:0}100%{opacity:1}}
 .countries path:hover,.countries path.keyboard-focus{transform:none!important}
 
 /* Boundary geometry debugger. Source paths stay untouched; only the debug
