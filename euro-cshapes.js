@@ -28,8 +28,7 @@ const EURO_EARLY_VISIBLE=EURO_EARLY_FEATURES.filter(feature=>feature.id!=="germa
 const EURO_PRUSSIA_PRE1886=(()=>{const official=EURO_OFFICIAL_FEATURES.find(feature=>feature.id==="prussia"&&feature.from===1886);return official?[{...official,id:"prussia",name:"普鲁士王国",statename:"普鲁士王国",from:1816,to:1885,startdate:"1816-01-01",enddate:"1885-12-31",source:"CShapes 2.0 official Prussia outline · pre-1886 compatibility"}]:[]})();
 const EURO_GERMAN_EMPIRE_POST1885=(()=>{const early=EURO_EARLY_FEATURES.find(feature=>feature.id==="germanEmpire"&&feature.from===1871);return early?[{...early,from:1886,to:1918,startdate:"1886-01-01",enddate:"1918-12-31",source:"CShapes-Europe · NASTAC German Empire continuity 1886—1918"}]:[]})();
 const EURO_HISTORICAL_FEATURES=[
-  ...EURO_PRUSSIA_PRE1886,
   ...EURO_GERMAN_EMPIRE_POST1885,
   {...feature("eastGalicia","东加里西亚",1919,1923,"利沃夫",0,""),source:"历史地区兼容轮廓 · 东加里西亚 1919—1923"}
 ];
-window.EURO_CSHAPES_FEATURES=[...EURO_EARLY_VISIBLE,...EURO_OFFICIAL_FEATURES,...EURO_POSTCOLDWAR_FEATURES,...EURO_MODERN_FEATURES,...EURO_SEED_FEATURES,...EURO_HISTORICAL_FEATURES].filter(feature=>feature.id!=="germanConfederation");
+window.EURO_CSHAPES_FEATURES=[...EURO_PRUSSIA_PRE1886,...EURO_EARLY_VISIBLE,...EURO_OFFICIAL_FEATURES,...EURO_POSTCOLDWAR_FEATURES,...EURO_MODERN_FEATURES,...EURO_SEED_FEATURES,...EURO_HISTORICAL_FEATURES].filter(feature=>feature.id!=="germanConfederation");
