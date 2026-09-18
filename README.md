@@ -14,15 +14,15 @@ Euro-historical-altas/
 ├─ app.js                             事件编排与初始化
 ├─ euro-cshapes-europe-1816-1885.js   NASTAC/CShapes-Europe 1816—1885 正式回溯边界
 ├─ euro-cshapes-official.js           ETH Zurich CShapes 2.0 1886—2019 正式欧洲边界数据
-├─ euro-cshapes-modern-2020-2026.js   2020—2026 GeoJSON 导入边界
-├─ euro-cshapes.js                    早期、官方和现代 GeoJSON 合并层
+├─ euro-cshapes-modern-2020-2026.js   2020—2026 CShapes 2.0 正式边界延展层
+├─ euro-cshapes.js                    早期、官方和现代正式边界合并层
 ├─ euro-historical-1816-1885.js       1816—1885 年历史实体索引
 ├─ euro-historical-1886-1999.js       1886—1999 年历史实体索引
 ├─ euro-2026.js                       2026 年现代参考实体索引
 ├─ formal-names.js                    正式国名与时期名称
 ├─ euro-meta-zh.js                    中文国名、首都和历史实体别名
 ├─ data/
-│  └─ euro-modern-2020-2026.geojson   2020—2026 本地保存的现代 GeoJSON 源
+│  └─ euro-modern-2020-2026.geojson   历史导入缓存（当前地图不加载）
 ├─ modules/
 │  ├─ core.js                         状态、历史资料、颜色和基础渲染
 │  ├─ map.js                          时间轴、边界构建和来源标识
@@ -54,7 +54,7 @@ Euro-historical-altas/
 - `capital`：源数据首都字段。
 - `geometry`：Polygon 或 MultiPolygon 几何。
 
-当前仓库已经导入 ETH Zurich 官方 CShapes 2.0 Shapefile：`euro-cshapes-official.js` 保存筛选后的正式欧洲 Polygon，覆盖 1886—2019 年。1816—1885 使用 NASTAC 平台实际加载的 CShapes-Europe 矢量瓦片接口 `/martin/cshapesEurope/0/0/0` 解码结果，写入 `euro-cshapes-europe-1816-1885.js`。2020—2026 不再使用本地 seed，而是将 NASTAC 现代记录与 CShapes 2.0 的亚美尼亚 Polygon 合并保存为 `data/euro-modern-2020-2026.geojson`，再导入为 `euro-cshapes-modern-2020-2026.js`。
+当前仓库已经导入 ETH Zurich 官方 CShapes 2.0 Shapefile：`euro-cshapes-official.js` 保存筛选后的正式欧洲 Polygon，覆盖 1886—2019 年。1816—1885 使用 NASTAC 平台实际加载的 CShapes-Europe 矢量瓦片接口 `/martin/cshapesEurope/0/0/0` 解码结果，写入 `euro-cshapes-europe-1816-1885.js`。2020—2026 使用 CShapes 2.0 正式数据中各国最近一期有效 Polygon 延展，不再加载本地 seed 或本地现代 GeoJSON；结果写入 `euro-cshapes-modern-2020-2026.js`，来源仍为 ETH Zurich CShapes 2.0。
 
 `euro-cshapes.js` 保留原架构中的 seed 定义，但当前正式合并层不再加载任何 seed。早期导入脚本会解析 NASTAC/Martin 返回的 Mapbox Vector Tile，保留 `From`、`To`、`Name`、`Status`、`Capital` 和边界几何：
 
@@ -64,7 +64,7 @@ python scripts/import-nastac-cshapes-europe.py
 
 官方 CShapes 2.0 的 GeoJSON/Shapefile 转换仍使用 `scripts/import-cshapes-europe.mjs`；页面调试器则适合对单个实体和单个年份做局部替换。
 
-现代 GeoJSON 的生成与导入流程为：
+历史现代 GeoJSON 的生成与导入流程（仅保留作数据迁移工具，当前地图不加载）为：
 
 ```powershell
 python scripts/build-modern-geojson.py
@@ -118,7 +118,7 @@ node scripts/verify.mjs
 
 ## 当前限制
 
-- 1816—1885 使用 NASTAC/CShapes-Europe 回溯矢量瓦片导入；1886—2019 使用 ETH Zurich CShapes 2.0 正式 Polygon；2020—2026 使用从本地 GeoJSON 导入的现代参考边界。
+- 1816—1885 使用 NASTAC/CShapes-Europe 回溯矢量瓦片导入；1886—2019 使用 ETH Zurich CShapes 2.0 正式 Polygon；2020—2026 使用 ETH Zurich CShapes 2.0 最近一期正式 Polygon 延展至 2026 年。
 - 地区概览地图标签使用中文简称；点击国家后，详情面板按年份显示正式国名和汉化首都。
 - 普鲁士王国 1816—1885 与东加里西亚 1919—1923 作为历史兼容地区层单列；东加里西亚不是独立国家记录。
 - 旗帜当前为程序化预览色块，用于验证交互和裁切逻辑；如需历史旗帜，应补充本地资源及对应来源索引。

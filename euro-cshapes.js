@@ -18,12 +18,18 @@ const EURO_SEED_SOURCE=[
   feature("germanConfederation","德意志邦联",1816,1869,"法兰克福",1,"255"),feature("prussia","普鲁士王国",1816,1869,"柏林",1,"260"),feature("austriaEmpire","奥地利帝国",1816,1866,"维也纳",1,"300"),feature("piedmont","撒丁王国",1816,1860,"都灵",1,"331"),feature("papal","教皇国",1816,1870,"罗马",1,"332"),feature("twoSicilies","两西西里王国",1816,1860,"那不勒斯",1,"333"),feature("austriaHungary","奥匈帝国",1867,1918,"维也纳",1,"300"),feature("germanEmpire","德意志帝国",1871,1918,"柏林",1,"255"),feature("ottoman","奥斯曼帝国",1816,1922,"伊斯坦布尔",1,"640"),feature("czechoslovakia","捷克斯洛伐克",1918,1992,"布拉格",1,"316"),feature("yugoslavia","南斯拉夫",1918,1991,"贝尔格莱德",1,"345"),feature("sovietUnion","苏联",1922,1991,"莫斯科",1,"365"),feature("sovietRussia","俄罗斯苏维埃联邦社会主义共和国",1918,1921,"莫斯科",1,"365"),feature("westGermany","德意志联邦共和国",1949,1990,"波恩",1,"255"),feature("eastGermany","德意志民主共和国",1949,1990,"东柏林",1,"265")
 ];
 const EURO_EARLY_FEATURES=window.EURO_CSHAPES_EARLY_FEATURES||[];
-const EURO_OFFICIAL_FEATURES=window.EURO_CSHAPES_OFFICIAL_FEATURES||[];
-const EURO_MODERN_FEATURES=window.EURO_CSHAPES_MODERN_FEATURES||[];
-const EURO_POSTCOLDWAR_FEATURES=EURO_MODERN_FEATURES.filter(feature=>feature.id==="belarus").map(feature=>({...feature,from:1991,to:2019,startdate:"1991-01-01",enddate:"2019-12-31",source:"CShapes-Europe GeoJSON import · Belarus reference 1991—2019"}));
+const EURO_OFFICIAL_SOURCE_FEATURES=window.EURO_CSHAPES_OFFICIAL_FEATURES||[];
+const EURO_OFFICIAL_FEATURES=EURO_OFFICIAL_SOURCE_FEATURES.map(feature=>{if(/belarus|byelorussia/i.test(`${feature.name} ${feature.statename}`))return {...feature,id:"belarus",name:"Belarus",statename:"Belarus"};return feature.id==="ottoman"&&feature.from>=1923?{...feature,id:"turkey",name:"Turkey",statename:"Turkey"}:feature});
+const EURO_MODERN_IDS=new Set(["albania","armenia","austria","azerbaijan","belarus","belgium","bosnia-herzegovina","bulgaria","croatia","czechia","cyprus","denmark","estonia","finland","france","georgia","greece","hungary","iceland","ireland","italy","kosovo","latvia","lithuania","luxembourg","macedonia-fyrom-north-macedonia","malta","moldova","montenegro","netherlands","norway","poland","portugal","romania","russia","serbia","slovakia","slovenia","spain","sweden","switzerland","turkey","uk","ukraine","westGermany"]);
+const EURO_MODERN_FEATURES=[...EURO_MODERN_IDS].map(id=>{const latest=EURO_OFFICIAL_FEATURES.filter(feature=>feature.id===id&&feature.to===2019).sort((a,b)=>b.from-a.from)[0];return latest?{...latest,from:2020,to:2026,startdate:"2020-01-01",enddate:"2026-12-31",source:"ETH Zurich CShapes 2.0 official boundary · 2020—2026 reference"}:null}).filter(Boolean);
+const EURO_POSTCOLDWAR_FEATURES=[];
 const EURO_SEED_FEATURES=[];
+const EURO_EARLY_VISIBLE=EURO_EARLY_FEATURES.filter(feature=>feature.id!=="germanConfederation");
+const EURO_PRUSSIA_PRE1886=(()=>{const official=EURO_OFFICIAL_FEATURES.find(feature=>feature.id==="prussia"&&feature.from===1886);return official?[{...official,id:"prussia",name:"普鲁士王国",statename:"普鲁士王国",from:1816,to:1885,startdate:"1816-01-01",enddate:"1885-12-31",source:"CShapes 2.0 official Prussia outline · pre-1886 compatibility"}]:[]})();
+const EURO_GERMAN_EMPIRE_POST1885=(()=>{const early=EURO_EARLY_FEATURES.find(feature=>feature.id==="germanEmpire"&&feature.from===1871);return early?[{...early,from:1886,to:1918,startdate:"1886-01-01",enddate:"1918-12-31",source:"CShapes-Europe · NASTAC German Empire continuity 1886—1918"}]:[]})();
 const EURO_HISTORICAL_FEATURES=[
-  {...feature("prussia","普鲁士王国",1816,1885,"柏林",1,"260"),source:"历史兼容轮廓 · 普鲁士王国 1816—1885"},
+  ...EURO_PRUSSIA_PRE1886,
+  ...EURO_GERMAN_EMPIRE_POST1885,
   {...feature("eastGalicia","东加里西亚",1919,1923,"利沃夫",0,""),source:"历史地区兼容轮廓 · 东加里西亚 1919—1923"}
 ];
-window.EURO_CSHAPES_FEATURES=[...EURO_EARLY_FEATURES,...EURO_OFFICIAL_FEATURES,...EURO_POSTCOLDWAR_FEATURES,...EURO_MODERN_FEATURES,...EURO_SEED_FEATURES,...EURO_HISTORICAL_FEATURES];
+window.EURO_CSHAPES_FEATURES=[...EURO_EARLY_VISIBLE,...EURO_OFFICIAL_FEATURES,...EURO_POSTCOLDWAR_FEATURES,...EURO_MODERN_FEATURES,...EURO_SEED_FEATURES,...EURO_HISTORICAL_FEATURES].filter(feature=>feature.id!=="germanConfederation");

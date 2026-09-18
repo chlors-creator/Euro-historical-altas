@@ -227,7 +227,7 @@ NAME_TO_ID = {
     'Saxe-Meiningen': 'saxeMeiningen', 'Saxe-Weimar': 'saxeWeimar', 'Saxony': 'saxony',
     'Schaumburg Lippe': 'schaumburgLippe', 'Serbia': 'serbia', 'Slovakia': 'slovakia',
     'Slovenia': 'slovenia', 'Spain': 'spain', 'Sweden': 'sweden', 'Switzerland': 'switzerland',
-    'Turkey (Ottoman Empire)': 'ottoman', 'Ukraine': 'ukraine', 'United Kingdom': 'uk',
+    'Turkey (Ottoman Empire)': 'turkey', 'Ukraine': 'ukraine', 'United Kingdom': 'uk',
     'Württemberg': 'wurttemberg', 'W\xffrttemberg': 'wurttemberg', 'Yugoslavia': 'yugoslavia',
 }
 

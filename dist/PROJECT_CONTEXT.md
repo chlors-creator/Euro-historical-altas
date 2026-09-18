@@ -7,7 +7,7 @@
 - 正式目录：`Euro-historical-altas/`；可发布副本：`dist/`。
 - 修改根目录后运行 `powershell -File scripts/sync-dist.ps1` 同步 `dist/`；不执行 `git push`。
 - 不把官方原始 GeoJSON、下载压缩包或临时截图提交到仓库。
-- `euro-cshapes-official.js` 保存已导入的 ETH Zurich CShapes 2.0 正式欧洲 Polygon；`euro-cshapes.js` 负责与其它时期 seed 合并。
+- `euro-cshapes-official.js` 保存已导入的 ETH Zurich CShapes 2.0 正式欧洲 Polygon；`euro-cshapes.js` 负责合并各时期边界层。
 - 正式几何可由导入脚本或页面疆域调试器替换，不能把本地 seed 当作官方坐标。
 
 ## 代码结构
@@ -19,7 +19,7 @@
 - `modules/events.js`：欧洲国家与历史政体事件目录。
 - `modules/boundary-debug.js`：SVG/GeoJSON 导入、时期绑定、保存和导出。
 - `euro-cshapes-official.js`：CShapes 2.0 正式欧洲边界快照（1886—2019）。
-- `euro-cshapes.js`：正式数据与 1816—1885/2020—2026 seed 的合并层。
+- `euro-cshapes.js`：正式数据与 1816—1885 回溯层、2020—2026 CShapes 2.0 正式轮廓延展层的合并层。
 - `scripts/import-cshapes-europe.mjs`：官方 GeoJSON 到本项目 JavaScript 数据层的转换器。
 
 ## 当前规则
@@ -27,7 +27,7 @@
 - 时间轴固定为 1816—2026；年度选择使用满足 `from <= year <= to` 的记录。
 - 历史实体和现代实体共用同一套 SVG 地图接口，实体颜色由政体 ID 稳定映射。
 - 导入的边界替换只覆盖当前实体与时期，不改写原始 seed 数据。
-- 地图来源说明始终链接到 [ETH Zurich CShapes](https://icr.ethz.ch/data/cshapes/)，并明确区分本地轻量 seed 与官方几何。
+- 地图来源说明始终链接到 [ETH Zurich CShapes](https://icr.ethz.ch/data/cshapes/)，并明确区分历史回溯数据与 CShapes 2.0 正式几何。
 - 旗帜目前是程序化预览资源；替换为真实历史旗帜时，必须同步补充来源和许可说明。
 
 ## 验证

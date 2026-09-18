@@ -27,9 +27,9 @@ const canonicalId=name=>{
     ["austria","austria"],["italy","italy"],["piedmont","piedmont"],["switzerland","switzerland"],
     ["czechoslovakia","czechoslovakia"],["czech republic","czechia"],["bohemia","czechia"],
     ["poland","poland"],["denmark","denmark"],["norway","norway"],["sweden","sweden"],
-    ["finland","finland"],["russia","russia"],["soviet union","sovietUnion"],["ukraine","ukraine"],
+    ["finland","finland"],["belarus","belarus"],["russia","russia"],["soviet union","sovietUnion"],["ukraine","ukraine"],
     ["romania","romania"],["rumania","romania"],["hungary","hungary"],["yugoslavia","yugoslavia"],["bulgaria","bulgaria"],
-    ["greece","greece"],["ottoman","ottoman"],["turkey","turkey"],["armenia","armenia"],["azerbaijan","azerbaijan"],["georgia","georgia"]
+    ["greece","greece"],["turkey (ottoman","turkey"],["ottoman","ottoman"],["turkey","turkey"],["armenia","armenia"],["azerbaijan","azerbaijan"],["georgia","georgia"]
   ];
   return aliases.find(([alias])=>key.includes(alias))?.[1]||slug(name);
 };
