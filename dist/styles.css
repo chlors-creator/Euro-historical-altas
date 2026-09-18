@@ -13,7 +13,7 @@ dialog{width:min(530px,calc(100% - 2rem));padding:2.4rem;border:1px solid var(--
 .sea-label{z-index:10;color:rgba(60,77,74,.82);text-shadow:0 1px 0 rgba(245,232,202,.78)}.mediterranean{left:59%;top:26%;transform:translate(-50%,-50%) rotate(-5deg)}.red-sea{left:67.5%;top:56.8%;bottom:auto;transform:translate(-50%,-50%) rotate(72deg);letter-spacing:.28em;font-size:.95rem;font-weight:900}.map-labels text.country-label{transform-box:fill-box;transform-origin:center;transition:transform .22s ease}.country-flag{opacity:0;pointer-events:none;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 2px 2px rgba(35,25,15,.28))}.country-flag.active-flag{opacity:1}.country-flag-motion{transform-box:fill-box;transform-origin:center;animation:countryFlagRise .62s cubic-bezier(.2,.85,.25,1) both}@keyframes countryFlagRise{0%{opacity:0;transform:translateY(14px) scale(.78)}55%{opacity:1;transform:translateY(-3px) scale(1.035)}100%{opacity:1;transform:translateY(0) scale(1)}}
 #mapStage .mediterranean{left:53%!important;top:29%!important;transform:translate(-50%,-50%) rotate(-5deg)!important}
 #mapStage .red-sea{left:67.5%!important;top:56.8%!important;bottom:auto!important;transform:translate(-50%,-50%) rotate(72deg)!important}
-#realCountries.updating{visibility:hidden}
+#realCountries.updating{visibility:visible}
 #realCountries.updating path{transition:none!important}
 .countries path:focus{outline:none}
 #menaMap{position:relative;z-index:0}
@@ -89,6 +89,12 @@ dialog{width:min(530px,calc(100% - 2rem));padding:2.4rem;border:1px solid var(--
   .workspace{grid-template-columns:minmax(0,1fr) 350px}
 }
 @media(max-width:560px){.panel-title-row{gap:.65rem}}
+
+/* Hover reveals the historical flag in place; neither the flag nor its country
+   path rises vertically when the pointer enters the map. */
+.country-flag-motion{animation:countryFlagReveal .42s ease-out both}
+@keyframes countryFlagReveal{0%{opacity:0;transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+.countries path:hover,.countries path.keyboard-focus{transform:none!important}
 
 /* Boundary geometry debugger. Source paths stay untouched; only the debug
    copy is rendered in this layer, so importing or transforming a boundary can
